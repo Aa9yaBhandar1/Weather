@@ -123,19 +123,30 @@ body{
 
 #row-humidity{
   display:flex;
-  gap: 20px;
-  justify-content: space-between;
+  gap: 5px;
+  font-size: 20px;
+ /* justify-content: space-between;*/
 }
-#humidity{
+
+#humidity-icon{
+  font-size:25px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+ #humidity{
   font-size:20px;
   margin: 10px;
 
+}
+
+#max-icon, #min-icon{
+  font-size : 20px;
 }
 .max-min{
   display:flex;
   gap: 40px;
   font-size: 20px;
-  margin-top:30px;
 }
 .weather-icon{
   font-size: 350px;
