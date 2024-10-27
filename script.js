@@ -1,27 +1,27 @@
 const apiKey="8ee56800e293ff166b81244d88480e1f";
-const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const apiUrlWeather="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const apiUrlForecast="https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
 
 
 const searchBox = document.querySelector("#search-city input");
 const searchBtn = document.querySelector("#search-btn");
 const weatherIcon = document.querySelector("#icon");
 
+// -----------------for Weather API------------------------
+
 async function checkWeather(city) {
-    const response=await fetch(apiUrl + city+`&appid=${apiKey}`);
+    const response=await fetch(apiUrlWeather + city+`&appid=${apiKey}`);
     var data= await response.json();
     console.log(data);
 
-  //for date and day from timezone 
+  //----------------for date and day from timezone---------- 
     const timezone = data.timezone;
-
   function getDateTimeByOffset(offsetInSeconds) {
     const offsetInMilliseconds = offsetInSeconds * 1000;
     const localDate = new Date();
-
     // Convert local time to UTC and apply the timezone offset
     const utc = localDate.getTime() + (localDate.getTimezoneOffset() * 60000);
     const targetDate = new Date(utc + offsetInMilliseconds);
-
     // Extract day and formatted date-time
     const options = {
         weekday: 'long',    // Day of the week
@@ -33,24 +33,22 @@ async function checkWeather(city) {
         second: '2-digit',
         hour12: false // 24-hour format; set to true for 12-hour format
     };
-
     // Get day and dateTime strings
     const day = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
     const dateTime = targetDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
                       + ', ' + targetDate.toLocaleTimeString('en-US', { hour12: true });
-
     // Return JSON object
     return {
         day: day,
         dateTime: dateTime
     };
   }
-
     console.log(getDateTimeByOffset(timezone));
     const {day,dateTime}= getDateTimeByOffset(timezone);
+
+  // ------------setting values to the weather condition datas---------------
     document.querySelector("#date").innerHTML = dateTime;
     document.querySelector("#day").innerHTML = day;
-
     document.querySelector("#city").innerHTML = data.name;
     document.querySelector("#wind").innerHTML = data.wind.speed + "km/hr";
     document.querySelector(".temp-max").innerHTML = Math.trunc(data.main.temp_max) + "°C";
@@ -69,7 +67,7 @@ async function checkWeather(city) {
    newIcon.split(" ").forEach(className => {
      weatherIcon.classList.add(className);
     });
-   }
+}
 
 function getWeatherIcon(weather) {
     switch (weather) {
@@ -93,23 +91,48 @@ function getWeatherIcon(weather) {
     }
 }
 
-
+// ------------activate weather and forecast screen by clicking search button-----
 searchBtn.addEventListener("click", ()=>{
     const city = searchBox.value.trim();
     if (city) {
         checkWeather(city);
+        getForecast(city);
     } else {
         alert("Please enter a city name");
     }
-})
+});
 
+// ----------activate by entering the key ------------------
 document.querySelector("#search-city input").addEventListener('keypress', function(event) {
   const city = searchBox.value.trim();
   if(event.key==='Enter'){
       checkWeather(city);
+    getForecast(city);
   }
 });
 
+async function getForecast(city) {
+   const response=await fetch(apiUrlForecast + city+`&appid=${apiKey}`);
+    var forecast= await response.json();
+      
+     
+    const timeTaken = '12:00:00';
+    const todayDate = new Date().toISOString().split('T')[0];
+
+    console.log(todayDate);
+    forecast.list.forEach(forecastWeather => {
+    if(forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)){
+      console.log(forecastWeather);
+      updateForecast(forecastWeather);
+      }
+   })
+    function updateForecast(){
+
+    
+    }
+
+
+   }
 
 
 
