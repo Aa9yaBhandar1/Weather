@@ -1,12 +1,49 @@
 body{
     font-family: 'Arial', sans-serif;
     /*background-color:#0b6b98;*/
-    background: rgb(10,190,193);
-    background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); 
-    color:rgb(206, 202, 202);
+    background-color: black;
+  color: white;
   }
 
+.page{
+  position: absolute;
+  width : 100%;
+  min-height : 100vh;
+  transition : all 0.5s ease-in-out;
+}
+#landing-page{
+  opacity: 1;
+  transition : translateY(0);
+  background-color: black;
+}
+#landing-page.active{
+  opacity: 1;
+  transition : translateY(0);
+  background-color: black;
+}
 
+#landing-page.hidden{
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+#main-page{
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  font-family: 'Arial', sans-serif;
+  /*background-color:#0b6b98;*/
+  background: rgb(10,190,193);
+  background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); 
+  color:rgb(206, 202, 202);
+}
+
+#main-page.active{
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
 .navbar{
   display:flex;
   justify-content: space-between;
@@ -24,6 +61,7 @@ body{
   display:flex;
   justify-content: space-between;
   gap:0px;
+  position: center;
 }
 
 #search-btn{
@@ -91,7 +129,8 @@ body{
     background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); */
     text-align:center;
     display:flex;
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: center; 
     margin:0 20px 0 20px;
     padding:0 50px 0 50px;
     color:rgb(206, 202, 202);    
@@ -101,7 +140,11 @@ body{
   text-align: left;
   font-size: 20px;
   padding:0px;
-  margin: 0px;
+  margin-right: auto;
+  max-width : 280px;
+  display: flex;
+  flex-direction: column; /* Ensures items stack vertically */
+  align-items: right;    /* Adjust alignment as needed */
 }
 
 #city-name{
@@ -112,13 +155,13 @@ body{
 
 #date,#day{
   font-size:30px;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
 
 }
 
 #wind{
   font-size:20px;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
 }
 
 #row-humidity{
@@ -130,14 +173,18 @@ body{
 
 #humidity-icon{
   font-size:25px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 10px;
 }
 
  #humidity{
   font-size:20px;
-  margin: 10px;
+  margin: 5px 10px 10px 10px ;
 
+}
+
+.temperature{
+  margin-left: auto;
 }
 
 #max-icon, #min-icon{
@@ -159,6 +206,7 @@ body{
   padding: 20px;
   border-radius: 10px;
   gap: 40px;
+  margin : 0 auto;
 }
 
 #degree{
@@ -171,30 +219,31 @@ body{
   color:rgb(206, 202, 202);
 }
 
-.week-forcast{
+.week-forecast{
   display:flex;
-  justify-content: space-between;
-  margin:100px 20px 40px 20px;
+  justify-content: space-around;
+  /*margin:100px 20px 40px 20px;*/
 }
 
-#day-1, #day-2, #day-3, #day-4, #day-5, #day-6{
+.weatherBox{
  /* background-color: #3F97A9; */
   background: rgb(10,190,193);
-    background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); 
+  background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); 
   opacity:70%;
   height:500px;
   width:300px;
   border-radius: 10px;
   text-align: center;
   font-size:35px;
+  margin: 100px 0 30px 0;
 }
 
-.forcast-icons{
+.forecast-icons2{
   margin-top:50px;
   font-size: 100px;
 }
 
-.forcast-temperature{
+.forecast-temperature{
   margin-top:90px;
   font-size: 30px;;
 }

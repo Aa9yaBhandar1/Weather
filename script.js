@@ -6,6 +6,10 @@ const apiUrlForecast="https://api.openweathermap.org/data/2.5/forecast?units=met
 const searchBox = document.querySelector("#search-city input");
 const searchBtn = document.querySelector("#search-btn");
 const weatherIcon = document.querySelector("#icon");
+const landingPage = document.querySelector("#landing-page");
+const mainPage = document.querySelector("#main-page");
+const goHome = document.querySelector("#home");
+
 
 // -----------------for Weather API------------------------
 
@@ -30,12 +34,11 @@ async function checkWeather(city) {
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
         hour12: false // 24-hour format; set to true for 12-hour format
     };
     // Get day and dateTime strings
     const day = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
-    const dateTime = targetDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    const dateTime = targetDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
                       + ', ' + targetDate.toLocaleTimeString('en-US', { hour12: true });
     // Return JSON object
     return {
@@ -91,12 +94,13 @@ function getWeatherIcon(weather) {
     }
 }
 
-// ------------activate weather and forecast screen by clicking search button-----
+// ------------activate weather and forecast screen by clickHomeing search button-----
 searchBtn.addEventListener("click", ()=>{
     const city = searchBox.value.trim();
     if (city) {
         checkWeather(city);
         getForecast(city);
+        showMainPage();
     } else {
         alert("Please enter a city name");
     }
@@ -107,35 +111,98 @@ document.querySelector("#search-city input").addEventListener('keypress', functi
   const city = searchBox.value.trim();
   if(event.key==='Enter'){
       checkWeather(city);
-    getForecast(city);
+      getForecast(city);
+      showMainPage();
   }
 });
 
+ goHome.addEventListener("click", showLandingPage);
+
+function showLandingPage(){
+  mainPage.classList.remove('active');
+  mainPage.classList.add('hidden');
+  landingPage.classList.remove('hidden');
+  landingPage.classList.add('active');
+}
+function showMainPage(){
+  landingPage.classList.add('hidden');
+  mainPage.classList.remove('hidden');
+  mainPage.classList.add('active');
+}
+
+// ------------- Weekly Forecast ------------------
 async function getForecast(city) {
-   const response=await fetch(apiUrlForecast + city+`&appid=${apiKey}`);
-    var forecast= await response.json();
-      
-     
-    const timeTaken = '12:00:00';
-    const todayDate = new Date().toISOString().split('T')[0];
+    const response = await fetch(apiUrlForecast + city + `&appid=${apiKey}`);
+    const forecast = await response.json();
 
-    console.log(todayDate);
-    forecast.list.forEach(forecastWeather => {
-    if(forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)){
-      console.log(forecastWeather);
-      updateForecast(forecastWeather);
-      }
-   })
-    function updateForecast(){
+    const filteredForecasts = forecast.list.filter(forecastWeather => {
+        const timeFromForecast = forecastWeather.dt_txt.split(' ')[1];
+        return timeFromForecast === '12:00:00';
+    });
+    console.log(filteredForecasts);
+    updateForecast(filteredForecasts);
+}
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
     
-    }
+    // Get month in 'Nov' format
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    
+    // Get day of month (1, 2, 3, etc.)
+    const day = date.getDate();
+    
+    // Get day of week in 'SAT' format
+    const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' });
+    
+    // Combine them in the desired format
+    return `${month} ${day}, ${dayOfWeek}`;
+}
 
-
-   }
-
-
-
+function updateForecast(forecastData) {
+    const weatherBoxes = document.querySelectorAll(".week-forecast .weatherBox");
+    
+    forecastData.forEach((data, index) => {
+        if (weatherBoxes[index]) {
+            // Format the date
+            const formattedDate = formatDate(data.dt_txt);
+            
+            // Update the elements
+            weatherBoxes[index].querySelector(".forecast-day").innerText = formattedDate;
+            weatherBoxes[index].querySelector(".forecast-temperature").innerText = (data.main.temp) + "°C";
+    
+            forecastData.forEach((data, index) => {
+                if (weatherBoxes[index]) {
+                    // Format date and update temperature as before...
+                    
+                    // Update weather icon
+                    const forecastIcons = weatherBoxes[index].querySelector(".forecast-icons2");
+                    if (forecastIcons) {
+                        const forecastCondition = data.weather[0].main;
+                        const newForecastIcon = getWeatherIcon(forecastCondition);
+                        
+                        // First, remove all existing classes but keep 'weather-icon'
+                        forecastIcons.className = 'forecast-icons2';
+                        
+                        // Add the new FontAwesome classes
+                        newForecastIcon.split(' ').forEach(className => {
+                            forecastIcons.classList.add(className);
+                        });
+                        
+                        // Debug
+                        console.log('Updated icon for condition:', {
+                            condition: forecastCondition,
+                            newClasses: newForecastIcon,
+                            finalClassName: forecastIcons.className
+                        });
+                    }
+                }
+            });
+           
+        } 
+       }
+    );
+}
 
 
 
