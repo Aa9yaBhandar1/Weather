@@ -9,6 +9,7 @@ const weatherIcon = document.querySelector("#icon");
 const landingPage = document.querySelector("#landing-page");
 const mainPage = document.querySelector("#main-page");
 const goHome = document.querySelector("#home");
+const navbarRight=document.querySelector("#navbar-right");
 
 
 // -----------------for Weather API------------------------
@@ -100,7 +101,8 @@ searchBtn.addEventListener("click", ()=>{
     if (city) {
         checkWeather(city);
         getForecast(city);
-        showMainPage();
+        //showMainPage();
+        togglePage();
     } else {
         alert("Please enter a city name");
     }
@@ -112,13 +114,35 @@ document.querySelector("#search-city input").addEventListener('keypress', functi
   if(event.key==='Enter'){
       checkWeather(city);
       getForecast(city);
-      showMainPage();
+      //showMainPage();
+      togglePage();
   }
 });
 
- goHome.addEventListener("click", showLandingPage);
+ //goHome.addEventListener("click", showLandingPage);
 
-function showLandingPage(){
+function togglePage(){
+  //if(mainPage.classList.contains('hidden')){
+    //mainPage.classList.remove('hidden');
+    landingPage.classList.add('hidden');
+    mainPage.classList.add('active');
+
+    document.body.classList.add("landing-hidden");
+    document.body.classList.remove("main-hidden");
+
+  //}
+ /* else{
+    mainPage.classList.remove('active')
+    mainPage.classList.add('hidden');
+    landingPage.classList.remove('hidden');
+    landingPage.classList.add('active');
+
+    document.body.classList.add("main-hidden");
+    document.body.classList.remove("landing-hidden");
+
+  }*/
+}
+/* function showLandingPage(){
   mainPage.classList.remove('active');
   mainPage.classList.add('hidden');
   landingPage.classList.remove('hidden');
@@ -128,7 +152,9 @@ function showMainPage(){
   landingPage.classList.add('hidden');
   mainPage.classList.remove('hidden');
   mainPage.classList.add('active');
-}
+  navbarRight.classList.remove("main-hidden");
+  navbarRight.classList.add("landing-hidden");
+}*/
 
 // ------------- Weekly Forecast ------------------
 async function getForecast(city) {

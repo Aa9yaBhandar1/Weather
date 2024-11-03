@@ -1,8 +1,15 @@
+*{
+  margin:0;
+  padding:0;
+}
 body{
     font-family: 'Arial', sans-serif;
     /*background-color:#0b6b98;*/
     background-color: black;
   color: white;
+  overflow-x: hidden;
+  margin : 10px;
+  padding: 5px;
   }
 
 .page{
@@ -19,7 +26,7 @@ body{
 #landing-page.active{
   opacity: 1;
   transition : translateY(0);
-  background-color: black;
+  background-color: grey;
 }
 
 #landing-page.hidden{
@@ -44,26 +51,31 @@ body{
   transform: translateY(0px);
   pointer-events: all;
 }
-.navbar{
-  display:flex;
-  justify-content: space-between;
-  margin:20px 30px;
+ #landing-page #navbar-right{
+  display : flex;
+  justify-content: center;
+  align-items:center;
+  background-color: #0A2E36;
+  width : px;
+  height : 200px;
+}
+#landing-page #input{
+  width: 100%;
+  padding: 1rem;
+  padding-right: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
 }
 
-#navbar-left{
-  display:flex;
-  justify-content: space-between;
-  gap:60px;
-}
 
-
-#navbar-right{
+.landing-hidden #navbar-right{
   display:flex;
   justify-content: space-between;
   gap:0px;
-  position: center;
-}
 
+}
 #search-btn{
   padding: 10px 20px;
   font-size: 16px;
@@ -231,7 +243,7 @@ body{
   background: linear-gradient(0deg, rgba(10,190,193,1) 0%, rgba(28,74,203,1) 100%); 
   opacity:70%;
   height:500px;
-  width:300px;
+  width:320px;
   border-radius: 10px;
   text-align: center;
   font-size:35px;
