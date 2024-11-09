@@ -6,7 +6,6 @@ body {
 html {
   font-family: "Arial", sans-serif;
   /*background-color:#0b6b98;*/
-  background-image: url("background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,24 +13,24 @@ html {
   color: white;
   overflow-x: hidden;
   margin: 10px;
-  padding: 5px;
+  padding: 0;
 }
 
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-image: url("background.jpg");
-  background-size: fit;
+  background-size: cover;
   background-position: center;
   filter: blur(8px); /* Adjust blur level */
   z-index: -1; /* Places the background below any content */
 }
 .page {
-  position: absolute;
+  position: relative;
   width: 100%;
   min-height: 50vh;
   transition: all 0.5s ease-in-out;
@@ -51,9 +50,9 @@ body::before {
   );*/
   background-color: rgb(206, 202, 202);
   border-radius: 12px;
-  backdrop-filter: blur(100px);
-  padding: 20px;
-  margin: 40px;
+  backdrop-filter: blur(3px);
+  padding: 1.25rem;
+  margin: 1rem auto;
   transition: translateY(0);
 }
 
@@ -207,7 +206,7 @@ body::before {
   justify-content: center;
   margin: 0 20px 0 20px;
   padding: 0 50px 0 50px;
-  color: rgb(206, 202, 202);
+  color: white; /*rgb(206, 202, 202);*/
 }
 
 .city-details {
@@ -290,7 +289,7 @@ body::before {
 #comment {
   font-size: 40px;
   margin: 0 40px 0 40px;
-  color: rgb(206, 202, 202);
+  color: white; /*rgb(206, 202, 202);*/
 }
 
 .week-forecast {
