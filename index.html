@@ -1,100 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Weather Forecast</title>
-    <link href="style.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8d3587a6d2.js" crossorigin="anonymous"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/8d3587a6d2.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-     <!-- ----------------Landing page --------------------->
+    <!-- ----------------Landing page --------------------->
     <div class="page" id="landing-page">
-  <div id="navbar-right">
-      <p id="search-city">Search city <input type="text" id="search-city-placeholder" placeholder="Enter city name"></p>
-      <button id="search-btn">
-        <i class="fa-solid fa-magnifying-glass"></i> 
-      </button>
+      <div id="navbar-landingPage">
+        <div id="search-image-div">
+          <img id="search-image" src="search.png" />
+        </div>
+        <input
+          id="search-city-landingPage"
+          type="text"
+          placeholder="Search city name"
+        />
+        <button id="search-btn-landingPage">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
     </div>
 
-
-     </div>
-    
     <!-- -------------------------------Main page-------------------------->
     <!-- ----------------------Navbar------------------------------>
-  <div class = "page" id="main-page">
-      <div id="navbar-right">
-      <p id="search-city">Search city <input type="text" id="search-city-placeholder" placeholder="Enter city name"></p>
-      <button id="search-btn">
-        <i class="fa-solid fa-magnifying-glass"></i> 
-      </button>
-    </div>
-
-
-  <div class="header">
-    <h1>Weather Today</h1>
-  </div>
-    <!---------------------------Top section of the weather--------------------------------->
-    <div class="top-section">
-         <!---------City details--------->
-      <div class="city-details">
-        <h1 id="city">City Name</h1>
-        <p id="date"> DATE</p>
-        <p id="day">DAY </p>
-        <p id="wind">Wind: 0km/h</p>
-        <div id="row-humidity"><i id=humidity-icon class="fa-solid fa-droplet"></i> <p id="humidity">0%</p></div>
+    <div class="page" id="main-page">
+      <div id="navbar-mainPage">
+        <p id="search-city-mainPage">
+          Search city
+          <input
+            type="text"
+            id="search-city-placeholder-mainPage"
+            placeholder="Enter city name"
+          />
+        </p>
+        <button id="search-btn-mainPage">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
       </div>
 
-      <!----------Weather symbol and temperature----------->
-      <div class="current-weather">
-        <div class="weather-icon">
-          <i id="icon" class="fa-solid fa-cloud-sun-rain"></i> 
-        </div>
-        <p id="comment">Description</p>
+      <div class="header">
+        <h1>Weather Today</h1>
       </div>
-      <!-- -------------Temperature ---------------- -->
-      <div class="temperature">
-        <div class="max-min">
-          <div class= "max"> <i id = max-icon class="fa-solid fa-arrow-up"></i> <p class="temp-max">Max</p></div>
-          <div class="min"> <i id = min-icon class="fa-solid fa-arrow-down"></i> <p class="temp-min"> Min</p> </div>
+      <!---------------------------Top section of the weather--------------------------------->
+      <div class="top-section">
+        <!---------City details--------->
+        <div class="city-details">
+          <h1 id="city">City Name</h1>
+          <p id="date">DATE</p>
+          <p id="day">DAY</p>
+          <p id="wind">Wind: 0km/h</p>
+          <div id="row-humidity">
+            <i id="humidity-icon" class="fa-solid fa-droplet"></i>
+            <p id="humidity">0%</p>
+          </div>
         </div>
+
+        <!----------Weather symbol and temperature----------->
+        <div class="current-weather">
+          <div class="weather-icon">
+            <i id="icon" class="fa-solid fa-cloud-sun-rain"></i>
+          </div>
+          <p id="comment">Description</p>
+        </div>
+        <!-- -------------Temperature ---------------- -->
+        <div class="temperature">
+          <div class="max-min">
+            <div class="max">
+              <i id="max-icon" class="fa-solid fa-arrow-up"></i>
+              <p class="temp-max">Max</p>
+            </div>
+            <div class="min">
+              <i id="min-icon" class="fa-solid fa-arrow-down"></i>
+              <p class="temp-min">Min</p>
+            </div>
+          </div>
           <h2 id="degree">0°C</h2>
+        </div>
       </div>
-    
-    </div>
 
-    <!------------------------------------Botttom section of the weather -------------------------------->
-    <div class="bottom-section">
-       <div class="week-forecast">
-        <div class="weatherBox">
-          <p class="forecast-day">SUN</p>
-          <i id="forecast-icons" class="forecast-icons2"></i>
-          <p class="forecast-temperature">20°C</p>
+      <!------------------------------------Botttom section of the weather -------------------------------->
+      <div class="bottom-section">
+        <div class="week-forecast">
+          <div class="weatherBox">
+            <p class="forecast-day">SUN</p>
+            <i id="forecast-icons" class="forecast-icons2"></i>
+            <p class="forecast-temperature">20°C</p>
+          </div>
+          <div class="weatherBox">
+            <p class="forecast-day">MON</p>
+            <i id="forecast-icons" class="forecast-icons2"></i>
+            <p class="forecast-temperature">15°C</p>
+          </div>
+          <div class="weatherBox">
+            <p class="forecast-day">TUE</p>
+            <i id="forecast-icons" class="forecast-icons2"></i>
+            <p class="forecast-temperature">28°C</p>
+          </div>
+          <div class="weatherBox">
+            <p class="forecast-day">WED</p>
+            <i id="forecast-icons" class="forecast-icons2"></i>
+            <p class="forecast-temperature">22°C</p>
+          </div>
+          <div class="weatherBox">
+            <p class="forecast-day">WED</p>
+            <i id="forecast-icons" class="forecast-icons2"></i>
+            <p class="forecast-temperature">22°C</p>
+          </div>
         </div>
-        <div class="weatherBox">
-          <p class="forecast-day">MON</p>
-          <i id="forecast-icons" class="forecast-icons2"></i>
-          <p class="forecast-temperature">15°C</p>
-        </div>
-        <div class="weatherBox">
-          <p class="forecast-day">TUE</p>
-          <i id="forecast-icons" class="forecast-icons2"></i>
-          <p class="forecast-temperature">28°C</p>
-        </div>
-        <div class="weatherBox">
-          <p class="forecast-day">WED</p>
-          <i id="forecast-icons" class="forecast-icons2"></i>
-          <p class="forecast-temperature">22°C</p>
-        </div>
-        <div class="weatherBox">
-          <p class="forecast-day">WED</p>
-          <i id="forecast-icons" class="forecast-icons2"></i>
-          <p class="forecast-temperature">22°C</p>
-        </div>
-       </div>
-    </div>
+      </div>
     </div>
   </body>
-  <script src="script.js">    
-  </script>
+  <script src="script.js"></script>
 </html>
