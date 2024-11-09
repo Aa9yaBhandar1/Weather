@@ -43,6 +43,9 @@ body::before {
   left: 35%;
   z-index: 1;
   overflow-y: hidden;
+  /*display: flex;
+  justify-content: center;
+  flex-direction: column;*/
   /*background: linear-gradient(
     to top,
     rgb(0, 0, 0, 0.15),
@@ -80,10 +83,10 @@ body::before {
     rgba(10, 190, 193, 1) 0%,
     rgba(28, 74, 203, 1) 100%
   );*/
-  background-image: url("background.jpg");
+  /* background-image: url("background.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
   height: 100vh;
   color: white /*rgb(206, 202, 202)*/;
 }
@@ -122,6 +125,9 @@ body::before {
   outline: none;
   font-weight: 500;
   transition: 0.25s border;
+  color: white;
+  font-size: 1.4rem;
+  text-align: center;
 }
 #search-city-landingPage:focus {
   border: 3px solid rgb(0, 0, 0, 0.15);
@@ -323,4 +329,18 @@ body::before {
 .forecast-temperature {
   margin-top: 90px;
   font-size: 30px;
+}
+
+@media (max-width: 768px) {
+  .body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  #landing-page {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 }
